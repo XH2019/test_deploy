@@ -24,7 +24,7 @@ if st.button("Match"):
             st.error("API endpoint not found. Please check your configuration.")
         else:
             try:
-                response = requests.post(f'{api_endpoint}/match', data={'resume': resume, 'job_description': job_description})
+                response = requests.post(f'{api_endpoint}/test', data={'resume': resume, 'job_description': job_description})
                 response.raise_for_status()  # Raise an exception for bad status codes
                 result = response.json()
                 st.write(f"Match Score: {result['score']}")
