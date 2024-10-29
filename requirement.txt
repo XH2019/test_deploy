@@ -1,0 +1,12 @@
+numpy
+scikit-learn
+scipy
+pandas
+torch
+sentence-transformers
+streamlit
+flask
+requests
+pydrive
+uvicorn
+flask_cors
