@@ -19,6 +19,7 @@ if st.button("Match"):
     if resume and job_description:
         #api_endpoint = os.environ.get('API_ENDPOINT')  # Get the API endpoint
         api_endpoint = st.secrets["API_ENDPOINT"] # Get the API endpoint
+        print(f"API endpoint: {api_endpoint}")  # Print the value of the secret
         # Error handling in case the environment variable is not set
         if api_endpoint is None:
             st.error("API endpoint not found. Please check your configuration.")
