@@ -17,18 +17,20 @@ job_description = st.text_area("Paste the job description here")
 
 if st.button("Match"):
     if resume and job_description:
+        api_endpoint = "http://localhost:5000"  # Get the API endpoint
         #api_endpoint = os.environ.get('API_ENDPOINT')  # Get the API endpoint
-        api_endpoint = st.secrets["API_ENDPOINT"] # Get the API endpoint
+        # api_endpoint = st.secrets["API_ENDPOINT"] # Get the API endpoint
         print(f"API endpoint: {api_endpoint}")  # Print the value of the secret
         # Error handling in case the environment variable is not set
         if api_endpoint is None:
             st.error("API endpoint not found. Please check your configuration.")
         else:
             try:
-                response = requests.post(f'{api_endpoint}/test')
+                payload={'resume': resume, 'job_description': job_description}
+                response = requests.post(f'{api_endpoint}/test', json=payload)
                 response.raise_for_status()  # Raise an exception for bad status codes
                 result = response.json()
-                st.write(f"Match Score: {result['score']}")
+                st.write(result)
                 # ... display gap analysis ...
             except requests.exceptions.RequestException as e:
                 st.error(f"Error connecting to the API: {e}")
